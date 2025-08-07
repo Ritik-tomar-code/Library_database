@@ -1,0 +1,173 @@
+ /* Create database */
+CREATE DATABASE College_Library;
+USE College_Library;
+
+/* Create the EMPLOYEE table */
+CREATE TABLE EMPLOYEE (	
+    EmpID CHAR (5) NOT NULL,
+    EmpName VARCHAR (100) NOT NULL,
+    EmpAddr VARCHAR (150)  NULL,
+    EmpEmail VARCHAR (50) NOT NULL,
+    CONSTRAINT EmployeePK PRIMARY KEY (EmpID)
+);
+
+/*Insert records into EMPLOYEE*/
+INSERT INTO EMPLOYEE(EmpID , EmpName , EmpAddr,EmpEmail)  	
+VALUES ('101', 'Ritik Tomar', 'Sector 17, Faridabad','ritik.tomar@univ.in');  
+
+INSERT INTO EMPLOYEE(EmpID , EmpName , EmpAddr,EmpEmail)  	
+VALUES ('102', 'Ajit Rana', 'Andheri East, Mumbai','ajit.rana@univ.in');  
+
+INSERT INTO EMPLOYEE(EmpID , EmpName , EmpAddr,EmpEmail)  	
+VALUES ('103', 'Ishan Sharma', 'Banjara Hills, Hyderabad','ishan.sharma@univ.in');  
+
+INSERT INTO EMPLOYEE(EmpID , EmpName , EmpAddr,EmpEmail)  	
+VALUES ('104', 'Ashish Dhankar', 'Sector 22, Chandigarh','ashish.dhankar@univ.in');  
+
+INSERT INTO EMPLOYEE(EmpID , EmpName , EmpAddr,EmpEmail)  	
+VALUES ('105', 'Sachdev Gautam', 'Salt Lake, Kolkata','sachdev.gautam@univ.in');  
+
+/* Create the STUDENT table */
+CREATE TABLE STUDENT (	
+    StudID CHAR (5) NOT NULL,
+    StuName VARCHAR (100) NOT NULL,
+    StuAddr VARCHAR (150)  NULL,
+    StuEmail VARCHAR (50) NOT NULL,
+    CONSTRAINT StudentPK PRIMARY KEY (StudID)
+);	
+
+/*Insert records into STUDENT*/
+INSERT INTO STUDENT(StudID , StuName , StuAddr,StuEmail)  	
+VALUES ('201', 'Jethalal Gada', 'Gokuldham Society, Mumbai','jethalal.gada@univ.in');  
+
+INSERT INTO STUDENT(StudID , StuName , StuAddr,StuEmail)  	
+VALUES ('202', 'Taarak Mehta', 'Gokuldham Society, Mumbai','taarak.m@univ.in');  
+
+INSERT INTO STUDENT(StudID , StuName , StuAddr,StuEmail)  	
+VALUES ('203', 'Bhide', 'Gokuldham Society, Mumbai','bhide@univ.in');  
+
+INSERT INTO STUDENT(StudID , StuName , StuAddr,StuEmail)  	
+VALUES ('204', 'Popatlal', 'Gokuldham Society, Mumbai','popatlal@univ.in');  
+
+INSERT INTO STUDENT(StudID , StuName , StuAddr,StuEmail)  	
+VALUES ('205', 'Sodhi', 'Gokuldham Society, Mumbai','sodhi@univ.in');  
+
+/* Create the PUBLISHER table */
+CREATE TABLE PUBLISHER (	
+    PubID CHAR (5) NOT NULL,
+    PubName VARCHAR (100) NOT NULL,
+    PubAddr VARCHAR (150)  NULL,
+    PubEmail VARCHAR (50) NOT NULL,
+    CONSTRAINT PublisherPK PRIMARY KEY (PubID)
+);
+
+/*Insert records into PUBLISHER*/
+INSERT INTO PUBLISHER(PubID , PubName , PubAddr,PubEmail)  	
+VALUES ('301', 'Neela Publishers', 'Mumbai Central, Mumbai','contact@neelapub.in');  
+
+INSERT INTO PUBLISHER(PubID , PubName , PubAddr,PubEmail)  	
+VALUES ('302', 'Gada Publishing', 'Ghatkopar, Mumbai','info@gadapub.in');  
+
+INSERT INTO PUBLISHER(PubID , PubName , PubAddr,PubEmail)  	
+VALUES ('303', 'Mehta Books', 'Borivali, Mumbai','support@mehtabooks.in');  
+
+INSERT INTO PUBLISHER(PubID , PubName , PubAddr,PubEmail)  	
+VALUES ('304', 'Bhide Publications', 'Thane, Mumbai','sales@bhidepub.in');  
+
+INSERT INTO PUBLISHER(PubID , PubName , PubAddr,PubEmail)  	
+VALUES ('305', 'Popat Prints', 'Malad, Mumbai','help@popatprints.in');  
+
+/* Create the AUTHOR table */
+CREATE TABLE AUTHOR (	
+    AuthID CHAR (5) NOT NULL,
+    AuthName VARCHAR (100) NOT NULL,
+    AuthAddr VARCHAR (150)  NULL,
+    AuthEmail VARCHAR (50) NOT NULL,
+    CONSTRAINT AuthPK PRIMARY KEY (AuthID)
+);
+
+/*Insert records into AUTHOR*/
+INSERT INTO AUTHOR(AuthID , AuthName , AuthAddr,AuthEmail)  	
+VALUES ('401', 'Champaklal Gada', 'Gokuldham Society','champak.gada@univ.in');  
+
+INSERT INTO AUTHOR(AuthID , AuthName , AuthAddr,AuthEmail)  	
+VALUES ('402', 'Taarak Mehta', 'Gokuldham Society','taarak@univ.in');  
+
+INSERT INTO AUTHOR(AuthID , AuthName , AuthAddr,AuthEmail)  	
+VALUES ('403', 'Iyer', 'Gokuldham Society','iyer@univ.in');  
+
+INSERT INTO AUTHOR(AuthID , AuthName , AuthAddr,AuthEmail)  	
+VALUES ('404', 'Bagha', 'Gada Electronics','bagha@univ.in');  
+
+INSERT INTO AUTHOR(AuthID , AuthName , AuthAddr,AuthEmail)  	
+VALUES ('405', 'Abdul', 'Gokuldham Society','abdul@univ.in');  
+
+/* Create the BOOK table */
+CREATE TABLE BOOK (	
+    BookID CHAR (5) NOT NULL,
+    BookName VARCHAR (100) NOT NULL,
+    BookPages INT  NOT NULL,
+    ISBNNum VARCHAR (50) NOT NULL,
+    StudID CHAR (5)  NULL,
+    EmpID CHAR (5)  NULL,
+    PubID CHAR (5) NOT NULL,
+    CONSTRAINT BookPK PRIMARY KEY (BookID),
+    CONSTRAINT BookFK1 FOREIGN KEY (StudID) REFERENCES STUDENT (StudID)
+        ON UPDATE CASCADE ON DELETE NO ACTION,
+    CONSTRAINT BookFK2 FOREIGN KEY (EmpID) REFERENCES EMPLOYEE (EmpID)
+        ON UPDATE CASCADE ON DELETE NO ACTION,
+    CONSTRAINT BookFK3 FOREIGN KEY (PubID) REFERENCES PUBLISHER (PubID)
+        ON UPDATE CASCADE ON DELETE NO ACTION
+);
+
+/*Insert records into BOOK*/
+INSERT INTO BOOK(BookID , BookName , BookPages,ISBNNum,StudID,EmpID,PubID)  	
+VALUES ('501', 'Gokuldham Diaries', 200,'ISBN12345','201','101','301');  
+
+INSERT INTO BOOK(BookID , BookName , BookPages,ISBNNum,StudID,EmpID,PubID)  	
+VALUES ('502', 'Tarak Talks', 150,'ISBN12346','202','102','302');  
+
+INSERT INTO BOOK(BookID , BookName , BookPages,ISBNNum,StudID,EmpID,PubID)  	
+VALUES ('503', 'Gada Electronics Manual', 120,'ISBN12347','203','103','303');  
+
+INSERT INTO BOOK(BookID , BookName , BookPages,ISBNNum,StudID,EmpID,PubID)  	
+VALUES ('504', 'Popat Investigates', 180,'ISBN12348','204','104','304');  
+
+INSERT INTO BOOK(BookID , BookName , BookPages,ISBNNum,StudID,EmpID,PubID)  	
+VALUES ('505', 'Society Rules', 220,'ISBN12349','205','105','305');  
+
+/* Create the BOOK_AUTH table */
+CREATE TABLE BOOK_AUTH (	
+    BookAuthID CHAR (5) NOT NULL,
+    BookID CHAR (5) NOT NULL,
+    AuthID CHAR (5) NOT NULL,
+    CONSTRAINT BookAuthPK PRIMARY KEY (BookAuthID),
+    CONSTRAINT BookAuthFK1 FOREIGN KEY (BookID) REFERENCES BOOK (BookID)
+        ON UPDATE CASCADE ON DELETE NO ACTION,
+    CONSTRAINT BooAuthkFK2 FOREIGN KEY (AuthID) REFERENCES AUTHOR (AuthID)
+        ON UPDATE CASCADE ON DELETE NO ACTION
+);
+
+/*Insert records into BOOK_AUTH*/
+INSERT INTO BOOK_AUTH(BookAuthID , BookID , AuthID)  	
+VALUES ('601', '501', '401');  
+
+INSERT INTO BOOK_AUTH(BookAuthID , BookID , AuthID)  	
+VALUES ('602', '502', '402');  
+
+INSERT INTO BOOK_AUTH(BookAuthID , BookID , AuthID)  	
+VALUES ('603', '503', '403');  
+
+INSERT INTO BOOK_AUTH(BookAuthID , BookID , AuthID)  	
+VALUES ('604', '504', '404');  
+
+INSERT INTO BOOK_AUTH(BookAuthID , BookID , AuthID)  	
+VALUES ('605', '505', '405');  
+
+/* SELECT queries */
+SELECT * FROM EMPLOYEE;
+SELECT * FROM STUDENT;
+SELECT * FROM PUBLISHER;
+SELECT * FROM AUTHOR;
+SELECT * FROM BOOK;
+SELECT * FROM BOOK_AUTH;
