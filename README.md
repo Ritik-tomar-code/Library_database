@@ -18,6 +18,9 @@ Tables Created:
 5. BOOK - Stores book details and links to student, employee, and publisher
 6. BOOK_AUTH - Links books to their authors
 
+<img width="806" height="624" alt="table structure" src="https://github.com/user-attachments/assets/641b4a41-99ab-4d5b-9451-283ff0bceddd" />
+
+
 Key Features:
 
 - Use of PRIMARY KEY and FOREIGN KEY constraints
